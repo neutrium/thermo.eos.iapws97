@@ -1,63 +1,65 @@
+var hs = require('../dist/HS');
+
 describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() {
 
 	describe("Boundary/auxiliary equations", function() {
 		describe("equation h\"2c3b(s)", function() {
 			it('correct results for s = 5.5 kJ/kg.K', function() {
-				expect(+NeutriumJS.thermo.IAPWS97.HS.b2c3b_S_H(5.5).toFixed(6)).toEqual(2687.693850);
-				//expect(+NeutriumJS.thermo.IAPWS97.HS.b2c3b_S_H(5.5).toFixed(6)).toEqual(26787.693850);
+				expect(+hs.b2c3b_S_H(5.5).toFixed(6)).toEqual(2687.693850);
+				//expect(+hs.b2c3b_S_H(5.5).toFixed(6)).toEqual(26787.693850);
 			});
 
 			it('correct results for s = 5.0 kJ/kg.K', function() {
-				expect(+NeutriumJS.thermo.IAPWS97.HS.b2c3b_S_H(5).toFixed(6)).toEqual(2451.623609);
+				expect(+hs.b2c3b_S_H(5).toFixed(6)).toEqual(2451.623609);
 			});
 
 			it('correct results for s = 4.5 kJ/kg.K', function() {
-				expect(+NeutriumJS.thermo.IAPWS97.HS.b2c3b_S_H(4.5).toFixed(6)).toEqual(2144.360448);
+				expect(+hs.b2c3b_S_H(4.5).toFixed(6)).toEqual(2144.360448);
 			});
 		});
 
 		describe("equation h_B13(s)", function() {
 
 			it('correct results for s = 3.7 kJ/kg.K', function() {
-				expect(+NeutriumJS.thermo.IAPWS97.HS.b13_S_H(3.7).toFixed(6)).toEqual(1632.525047);
+				expect(+hs.b13_S_H(3.7).toFixed(6)).toEqual(1632.525047);
 			});
 
 			it('correct results for s = 3.6 kJ/kg.K', function() {
-				expect(+NeutriumJS.thermo.IAPWS97.HS.b13_S_H(3.6).toFixed(6)).toEqual(1593.027214);
+				expect(+hs.b13_S_H(3.6).toFixed(6)).toEqual(1593.027214);
 			});
 
 			it('correct results for s = 3.5 kJ/kg.K', function() {
-				expect(+NeutriumJS.thermo.IAPWS97.HS.b13_S_H(3.5).toFixed(6)).toEqual(1566.104611);
+				expect(+hs.b13_S_H(3.5).toFixed(6)).toEqual(1566.104611);
 			});
 		});
 
 		describe("equation T_B23(h,s)", function() {
 
 			it('correct results for h = 2600 kJ/kg, s = 5.1 kJ/kg.K', function() {
-				expect(+NeutriumJS.thermo.IAPWS97.HS.b23_HS_T(2600, 5.1).toFixed(7)).toEqual(713.5259364);
+				expect(+hs.b23_HS_T(2600, 5.1).toFixed(7)).toEqual(713.5259364);
 			});
 
 			it('correct results for h = 2700 kJ/kg, s = 5.15 kJ/kg.K', function() {
-				expect(+NeutriumJS.thermo.IAPWS97.HS.b23_HS_T(2700, 5.15).toFixed(7)).toEqual(768.5345532);
+				expect(+hs.b23_HS_T(2700, 5.15).toFixed(7)).toEqual(768.5345532);
 			});
 
 			it('correct results for h = 2800 kJ/kg, s = 5.2 kJ/kg.K', function() {
-				expect(+NeutriumJS.thermo.IAPWS97.HS.b23_HS_T(2800, 5.2).toFixed(7)).toEqual(817.6202120);
+				expect(+hs.b23_HS_T(2800, 5.2).toFixed(7)).toEqual(817.6202120);
 			});
 		});
 
 		describe("equation H_14", function() {
 
 			it('correct results for s = 1 kJ/kg.K', function() {
-				expect(+NeutriumJS.thermo.IAPWS97.HS.b14_S_H(1).toFixed(7)).toEqual(308.5509647);
+				expect(+hs.b14_S_H(1).toFixed(7)).toEqual(308.5509647);
 			});
 
 			it('correct results for s = 2 kJ/kg.K', function() {
-				expect(+NeutriumJS.thermo.IAPWS97.HS.b14_S_H(2).toFixed(7)).toEqual(700.6304472);
+				expect(+hs.b14_S_H(2).toFixed(7)).toEqual(700.6304472);
 			});
 
 			it('correct results for s = 3.0 kJ/kg.K', function() {
-				expect(+NeutriumJS.thermo.IAPWS97.HS.b14_S_H(3).toFixed(6)).toEqual(1198.359754);
+				expect(+hs.b14_S_H(3).toFixed(6)).toEqual(1198.359754);
 			});
 
 		});
@@ -66,15 +68,15 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 		describe("equation h'_3a(s)", function() {
 
 			it('correct results for s = 3.8 kJ/kg.K', function() {
-				expect(+NeutriumJS.thermo.IAPWS97.HS.b3A_S_H(3.8).toFixed(6)).toEqual(1685.025565);
+				expect(+hs.b3A_S_H(3.8).toFixed(6)).toEqual(1685.025565);
 			});
 
 			it('correct results for s = 4.0 kJ/kg.K', function() {
-				expect(+NeutriumJS.thermo.IAPWS97.HS.b3A_S_H(4).toFixed(6)).toEqual(1816.891476);
+				expect(+hs.b3A_S_H(4).toFixed(6)).toEqual(1816.891476);
 			});
 
 			it('correct results for s = 4.2 kJ/kg.K', function() {
-				expect(+NeutriumJS.thermo.IAPWS97.HS.b3A_S_H(4.2).toFixed(6)).toEqual(1949.352563);
+				expect(+hs.b3A_S_H(4.2).toFixed(6)).toEqual(1949.352563);
 			});
 		});
 	});
@@ -85,11 +87,11 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 			var result;
 
 			beforeAll(function() {
-				result = NeutriumJS.thermo.IAPWS97.HS.solve(0.001, 0);
+				result = hs.solve(0.001, 0);
 			});
 
 			it('Pressure (P) is correct', function() {
-				expect(+result.p.toFixed(13)).toEqual(0.0009800980612);
+				expect(+result.p.toFixed(7)).toEqual(980.0980612);
 			});
 		});
 
@@ -97,11 +99,11 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 			var result;
 
 			beforeAll(function() {
-				result = NeutriumJS.thermo.IAPWS97.HS.solve(90, 0);
+				result = hs.solve(90, 0);
 			});
 
 			it('Pressure (P) is correct', function() {
-				expect(+result.p.toFixed(8)).toEqual(91.92954727);
+				expect(+result.p.toFixed(2)).toEqual(91929547.27);
 			});
 		});
 
@@ -109,11 +111,11 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 			var result;
 
 			beforeAll(function() {
-				result = NeutriumJS.thermo.IAPWS97.HS.solve(1500, 3.4);
+				result = hs.solve(1500, 3.4);
 			});
 
 			it('Pressure (P) is correct', function() {
-				expect(+result.p.toFixed(8)).toEqual(58.68294423);
+				expect(+result.p.toFixed(2)).toEqual(58682944.23);
 			});
 		});
 	});
@@ -123,7 +125,7 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 		describe("Boundary/auxiliary equations", function() {
 			describe("2ab boundary equation", function() {
 				it('Pressure (P) is correct', function() {
-					expect(+NeutriumJS.thermo.IAPWS97.HS.b2ab_S_H(7).toFixed(6)).toEqual(3376.437884);
+					expect(+hs.b2ab_S_H(7).toFixed(6)).toEqual(3376.437884);
 				});
 			});
 
@@ -131,13 +133,13 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 
 				describe("correct results for s = 7.0 kJ/kg.K", function() {
 					it('Enthalpy (h) is correct', function() {
-						expect(+NeutriumJS.thermo.IAPWS97.HS.b2ab_S_Hsat(7).toFixed(6)).toEqual(2723.729985);
+						expect(+hs.b2ab_S_Hsat(7).toFixed(6)).toEqual(2723.729985);
 					});
 				});
 
 				describe("correct results for s = 8.0 kJ/kg.K", function() {
 					beforeAll(function() {
-						result = NeutriumJS.thermo.IAPWS97.HS.b2ab_S_Hsat(8);
+						result = hs.b2ab_S_Hsat(8);
 					});
 
 					it('Enthalpy (h) is correct', function() {
@@ -147,7 +149,7 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 
 				describe("correct results for s = 9.0 kJ/kg.K", function() {
 					beforeAll(function() {
-						result = NeutriumJS.thermo.IAPWS97.HS.b2ab_S_Hsat(9);
+						result = hs.b2ab_S_Hsat(9);
 					});
 
 					it('Enthalpy (h) is correct', function() {
@@ -163,11 +165,11 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.thermo.IAPWS97.HS.solve(2800, 6.5);
+					result = hs.solve(2800, 6.5);
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.p.toFixed(9)).toEqual(1.371012767);
+					expect(+result.p.toFixed(3)).toEqual(1371012.767);
 				});
 			});
 
@@ -175,11 +177,11 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.thermo.IAPWS97.HS.solve(2800, 9.5);
+					result = hs.solve(2800, 9.5);
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.p.toFixed(12)).toEqual(0.001879743844);
+					expect(+result.p.toFixed(6)).toEqual(1879.743844);
 				});
 			});
 
@@ -187,11 +189,11 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.thermo.IAPWS97.HS.solve(4100, 9.5);
+					result = hs.solve(4100, 9.5);
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.p.toFixed(10)).toEqual(0.1024788997);
+					expect(+result.p.toFixed(4)).toEqual(102478.8997);
 				});
 			});
 		});
@@ -202,11 +204,11 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.thermo.IAPWS97.HS.solve(2800, 6);
+					result = hs.solve(2800, 6);
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.p.toFixed(9)).toEqual(4.793911442);
+					expect(+result.p.toFixed(3)).toEqual(4793911.442);
 				});
 			});
 
@@ -214,11 +216,11 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.thermo.IAPWS97.HS.solve(3600, 6);
+					result = hs.solve(3600, 6);
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.p.toFixed(8)).toEqual(83.95519209);
+					expect(+result.p.toFixed(2)).toEqual(83955192.09);
 				});
 			});
 
@@ -226,11 +228,11 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.thermo.IAPWS97.HS.solve(3600, 7);
+					result = hs.solve(3600, 7);
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.p.toFixed(9)).toEqual(7.527161441);
+					expect(+result.p.toFixed(3)).toEqual(7527161.441);
 				});
 			});
 		});
@@ -241,11 +243,11 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.thermo.IAPWS97.HS.solve(2800, 5.1);
+					result = hs.solve(2800, 5.1);
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.p.toFixed(7)).toEqual(94.3920206);
+					expect(+result.p.toFixed(1)).toEqual(94392020.6);
 				});
 			});
 
@@ -253,11 +255,11 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.thermo.IAPWS97.HS.solve(2800, 5.8);
+					result = hs.solve(2800, 5.8);
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.p.toFixed(9)).toEqual(8.414574124);
+					expect(+result.p.toFixed(3)).toEqual(8414574.124);
 				});
 			});
 
@@ -265,11 +267,11 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.thermo.IAPWS97.HS.solve(3400, 5.8);
+					result = hs.solve(3400, 5.8);
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.p.toFixed(8)).toEqual(83.76903879);
+					expect(+result.p.toFixed(2)).toEqual(83769038.79);
 				});
 			});
 		});
@@ -282,11 +284,11 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.thermo.IAPWS97.HS.solve(1700, 3.8);
+					result = hs.solve(1700, 3.8);
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.p.toFixed(8)).toEqual(25.55703246);
+					expect(+result.p.toFixed(2)).toEqual(25557032.46);
 				});
 			});
 
@@ -294,11 +296,11 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.thermo.IAPWS97.HS.solve(2000, 4.2);
+					result = hs.solve(2000, 4.2);
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.p.toFixed(8)).toEqual(45.40873468);
+					expect(+result.p.toFixed(2)).toEqual(45408734.68);
 				});
 			});
 
@@ -306,11 +308,11 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.thermo.IAPWS97.HS.solve(2100, 4.3);
+					result = hs.solve(2100, 4.3);
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.p.toFixed(7)).toEqual(60.7812334);
+					expect(+result.p.toFixed(1)).toEqual(60781233.4);
 				});
 			});
 		});
@@ -321,11 +323,11 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.thermo.IAPWS97.HS.solve(2600, 5.1);
+					result = hs.solve(2600, 5.1);
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.p.toFixed(8)).toEqual(34.34999263);
+					expect(+result.p.toFixed(2)).toEqual(34349992.63);
 				});
 			});
 
@@ -333,11 +335,11 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.thermo.IAPWS97.HS.solve(2400, 4.7);
+					result = hs.solve(2400, 4.7);
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.p.toFixed(8)).toEqual(63.63924887);
+					expect(+result.p.toFixed(2)).toEqual(63639248.87);
 				});
 			});
 
@@ -345,11 +347,11 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.thermo.IAPWS97.HS.solve(2700, 5);
+					result = hs.solve(2700, 5);
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.p.toFixed(8)).toEqual(88.39043281);
+					expect(+result.p.toFixed(2)).toEqual(88390432.81);
 				});
 			});
 		});
@@ -360,19 +362,19 @@ describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() 
 		describe("Tsat(h,s)", function() {
 			describe("correct results for h = 1800 kJ/kg, s = 5.3 kJ/kg.K", function() {
 				it('Enthalpy (h) is correct', function() {
-					expect(+NeutriumJS.thermo.IAPWS97.HS.r4_HS_Tsat(1800, 5.3).toFixed(7)).toEqual(346.8475498);
+					expect(+hs.r4_HS_Tsat(1800, 5.3).toFixed(7)).toEqual(346.8475498);
 				});
 			});
 
 			describe("correct results for h = 2400 kJ/kg, s = 6.0 kJ/kg.K", function() {
 				it('Enthalpy (h) is correct', function() {
-					expect(+NeutriumJS.thermo.IAPWS97.HS.r4_HS_Tsat(2400, 6).toFixed(7)).toEqual(425.1373305);
+					expect(+hs.r4_HS_Tsat(2400, 6).toFixed(7)).toEqual(425.1373305);
 				});
 			});
 
 			describe("correct results for h = 2500 kJ/kg, s = 5.5 kJ/kg.K", function() {
 				it('Enthalpy (h) is correct', function() {
-					expect(+NeutriumJS.thermo.IAPWS97.HS.r4_HS_Tsat(2500, 5.5).toFixed(7)).toEqual(522.5579013);
+					expect(+hs.r4_HS_Tsat(2500, 5.5).toFixed(7)).toEqual(522.5579013);
 				});
 			});
 		});

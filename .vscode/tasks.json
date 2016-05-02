@@ -1,0 +1,18 @@
+{
+	"version": "0.1.0",
+	"command": "npm",
+	"isShellCommand": true,
+	"showOutput": "always",
+    "args": ["run"],
+    "tasks": [
+        {
+            // Build task, Ctrl+Shift+B
+            "taskName": "build",
+            "isBuildCommand": true
+        },
+        {
+            // Build task, Ctrl+Shift+B
+            "taskName": "clean"
+        }
+    ]
+}

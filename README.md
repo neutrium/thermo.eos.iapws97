@@ -1,8 +1,8 @@
-# NeutriumJS.thermo.IAPWS97
+# Neutrium.thermo.IAPWS97
 
 ## Introduction
 
-NeutriumJS.thermo.IAPWS97 is a stand alone javascript implementation of the [IAPWS](http://www.iapws.org/) formulations of the thermodynamic properties of water and steam. The IAPWS papers implemented in NeutriumJS.thermo.IAPWS97 are as follows:
+Neutrium.thermo.IAPWS97 is a javascript implementation of the [IAPWS](http://www.iapws.org/) formulations of the thermodynamic properties of water and steam. The IAPWS papers implemented in Neutrium.thermo.IAPWS97 are as follows:
 
 - [Revised Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam 2007](http://www.iapws.org/relguide/IF97-Rev.html)
 - [Revised Supplementary Release on Backward Equations for Pressure as a Function of Enthalpy and Entropy p(h,s) for Regions 1 and 2 of the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam](http://www.iapws.org/relguide/Supp-PHS12-2014.pdf)
@@ -18,72 +18,62 @@ For specific details on range of applicability for the IAPWS please refer to the
 
 ## Getting Started
 
-### Adding NeutriumJS.thermo.IAPWS97
+### Installing
 
-#### Bower.io
+You can install the Neutrium implementation of the IAPWS97 equation of state package using npm.
 
-You can install NeutriumJS Steam using bower.
+	npm install @neutrium/thermo.eos.iapws97 --save
 
-	bower install neutriumjs.thermo.IAPWS97
+### Including
 
-#### npm
+#### Typescript
 
-You can add NeutriumJS.thermo.IAPWS97 to your project using npm by:
+In typescript you can include the package as follows:
 
-	npm install neutriumjs.thermo.iapws97 --save
+    import {IAPWS97_EoS} from "@neutrium/thermo.eos.iapws97"
 
-### Standalone
+    let EoS = new IAPWS97_EOS();
 
-If your project is not using bower you can use the compiled and minified source which is found at:
+This module is built with the declaration files so type hinting should work once the module has been imported.
 
-	dist/neutriumJS.thermo.IAPWS97.min.js
+#### Node
 
-## Including the library
+    var EoS = require('@neutrium/thermo.eos.iapws97');
 
-The NeutriumJS.thermo.IAPWS97 library should be included into your page using  the following:
+#### Browsers
 
-	<script charset="utf-8" src="path-to-lib/neutriumJS.thermo.IAPWS97.min.js"></script>
+Since version 2.0.0 this module has been converted to a commonjs (node) package. To use it in a browser environment you will need to use a tool like [browserify](http://browserify.org) to convert it to a web bundle.
 
-Note the use of charset="utf-8" is important, particularly if using un-minified code as the codebase makes use of unicode character variable names. 
+#### Unicode Notes
 
-### Limiting Library Weight
+This package makes use of utf8 characters for variable names and therefore should be handled appropriately. For example if bundled for browser use it would be included as follows:
 
-NeutriumJS.thermo.IAPWS97 is divided into base, pressure-temperature (PT), pressure-entropy (PS), pressure-enthalpy (PH) and enthalpy-entropy (HS) modules. If you only require a subset of this functionality you can exclude modules to reduce the weight of the library. There are a number of builds in the ./dist folder that provide selected subsets of the functionality, however you can also create your own subset as follows:
+	<script charset="utf-8" src="path-to-lib/IAPWS97-bundle.js"></script>
 
+## Usage
 
-At a bare minimum you must include the following files which will provide the functionality to calculate steam properties using pressure and temperature (these are the dependencies of all sub modules):
+### Calculating Properties
 
-	src/neutriumJS.thermo.IAPWS97.js
-	src/neutriumJS.thermo.IAPWS97.PT.js
-	
-To enable calculation of steam properties using pressure-entropy or pressure-enthalpy in addition to the base requirements above you need to include either/both of the following files as appropriate:
+Steam and water properties can be calculated using the solve method and a supported combination of pressure (Pa), temperature (K), enthalpy (kJ/kg.K) and entropy (kJ/K.kg). For example (in typescript):
 
-	src/neutriumJS.thermo.IAPWS97.PS.js
-	src/neutriumJS.thermo.IAPWS97.PH.js
-	
-Lastly if you wanted to enable calculations based on enthalpy-entropy (HS) you need to include the following files in addition to the base requirements (note the dependency on the PH module):
- 	
- 	src/neutriumJS.thermo.IAPWS97.PH.js
-	src/neutriumJS.thermo.IAPWS97.HS.js
+    import {IAPWS97_EOS} from "@neutrium/thermo.eos.iapws97"
 
-If you need further clarification of module dependencies just refer to the UMD definition at the start of each source file.
+    let EoS = new IAPWS97_EOS();
+    let inputs = {
+        "p" => 101325,
+        "t" => 300
+    }
 
-## Calculating Steam Properties
+    let state = EoS.solve(inputs);
 
-IAPWS provides four methods to calculate the properties of steam and water using combinations of pressure (in MPa), temperature (K), enthalpy (kJ/kg.K) and entropy (kJ/K.kg). In NeutriumJS Steam these four functions  are listed as follows:
-
-	NeutriumJS.thermo.IAPWS97.PT.solve(p, t);	// Calculate properties from pressure and temperature
-	NeutriumJS.thermo.IAPWS97.PH.solve(p, h);	// Calculate properties from pressure and enthalpy
-	NeutriumJS.thermo.IAPWS97.PS.solve(p, s);	// Calculate properties from pressure and entropy
-	NeutriumJS.thermo.IAPWS97.HS.solve(h, s);	// Calculate properties from enthalpy and entropy
-
+The supported input combinations are Pressure/Temperature, Pressure/Enthalpy, Pressure/Entropy and Enthalpy/Entropy.
 
 ### Return Values
 
 If your specified values lie within the applicable range for the IAWPS formulations you will be return an object containing the following properties:
 
 	{
-		p, 		// Pressure, p, MPa
+		p, 		// Pressure, p, Pa
 		t, 		// Temperature, t, K
 		v, 		// Specific volume, v, m^3/kg
 		rho,	// Density, rho, kg/m^3
@@ -100,28 +90,31 @@ If your specified values lie within the applicable range for the IAWPS formulati
 		ic		// Ionisation constant
 	}
 
+#### Typescript
+
+If you are using Typescript the return valve from the solve method will be an instance of the State class from the @neutrium/thermo package.
+
+#### Errors
+
 If you try and calculate the properties outside the range of applicability as specified by IAWPS an exception will be thrown.
 
-## Optional Neutrium Convert Support
+#### @neutrium/quantity Support
 
-NeutriumJS.steam has optional support for the [NeutriumJS.convert](https://github.com/NativeDynamics/NeutriumJS.convert) module. Just include it before the steam modules:
+This package allows properties of the `State` class to be converted to [Neutrium Quantities](https://github.com/neutrium/quantity).
 
-	<script charset="utf-8" src="path-to-lib/neutriumJS.convert.min.js"></script> 
-	<script charset="utf-8" src="path-to-lib/neutriumJS.thermo.IAPWS97.min.js"></script>
+Simply request the results of the solve method as quantities:
 
-Then you can get NeutriumJS.thermo.IAPWS97 to return results as Qty objects:
+	var result = IAPWS97_EoS.solve(3000000, 300).asQty();
 
-	var result = NeutriumJS.thermo.IAPWS97.PT.solve(3, 300).asQty();
-	
 This will allow you to easily convert each property as required:
 
-	var psi = result.P.to('psi');
+	var psi = result.p.to('psi');
 
-See the  the NeutriumJS.convert [readme](https://github.com/NativeDynamics/NeutriumJS.convert/blob/master/README.md) for more info.
+See the NeutriumJS.Quantity [readme](https://github.com/neutrium/quantity/blob/master/README.md) for more info.
 
 ## Testing
 
-NeutriumJS Steam is currently tested using all applicable tests provided in the IAWPS papers listed above. To run the tests, after cloning the repo install all npm and bower dependencies then run the default gulp task.
+This pacakge is currently tested using all applicable tests provided in the IAWPS papers listed above. To run the tests, after cloning and installing package dependences via npm and run `npm task build` at the terminal.
 
 ## Donations
 
@@ -138,7 +131,8 @@ NeutriumJS is free software, but you can support the developers by [donating her
 | 1.1.2   | Added exception throwing for out of range case |
 | 1.1.3   | Bug fixes for exception throwing logic |
 | 1.2.0	  | Renamed package to NeutriumJS.thermo.IAPWS97 |
+| 2.0.0   | Rename package, switch to Typescript and convert to npm module |
 
-## License 
+## License
 
 [Creative Commons Attribution 4.0 International](http://creativecommons.org/licenses/by/4.0/legalcode)

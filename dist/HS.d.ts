@@ -1,0 +1,10 @@
+import { State } from '@neutrium/thermo';
+export declare function solve(h: number, s: number): State;
+export declare function b14_S_H(s: number): number;
+export declare function b13_S_H(s: number): number;
+export declare function b23_HS_T(h: number, s: number): number;
+export declare function b2ab_S_H(s: number): number;
+export declare function b2ab_S_Hsat(s: number): number;
+export declare function b2c3b_S_H(s: number): number;
+export declare function b3A_S_H(s: number): number;
+export declare function r4_HS_Tsat(h: number, s: number): number;
