@@ -85,7 +85,7 @@ If your specified values lie within the applicable range for the IAWPS formulati
 		w,		// Speed of Sound, w, m/s
 		mu,		// Viscosity cP,
 		k,		// Thermal Conductivity W/m.K
-		sig,	// Surface Tension mN/m
+		sigma,	// Surface Tension mN/m
 		epsilon,// Dielectric constant
 		ic		// Ionisation constant
 	}

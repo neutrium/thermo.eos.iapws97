@@ -1,9 +1,15 @@
 {
   "name": "@neutrium/thermo.eos.iapws97",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "dist/index.js",
   "typings": "dist/index",
   "description": "A javascript implementation of the IAWPS formulations for the thermodynamic properties of water and steam.",
+  "keywords": [
+      "neutrium",
+      "thermodynamics",
+      "eos",
+      "water"
+  ],
   "license": "CC-BY-4.0",
   "author:": "Trevor Walker <trevorw@neutrium.net> (https://neutrium.net)",
   "private": false,

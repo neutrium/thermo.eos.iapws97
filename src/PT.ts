@@ -81,6 +81,8 @@ function findRegion_PT(P : number, T : number) : number
 
 function generateResult(r : any) : State
 {
+    // Calculate the density from the specific volume
+    r.rho = 1/r.v;
     // Caculate additional properties using the auxillary equations
 
     // Viscosity cP,

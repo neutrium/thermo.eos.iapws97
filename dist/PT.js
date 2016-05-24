@@ -66,6 +66,8 @@ function findRegion_PT(P, T) {
     return -1;
 }
 function generateResult(r) {
+    // Calculate the density from the specific volume
+    r.rho = 1 / r.v;
     // Caculate additional properties using the auxillary equations
     // Viscosity cP,
     r.mu = NS.viscosity(r.t, r.rho) / 1000;
