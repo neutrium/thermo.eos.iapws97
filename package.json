@@ -1,6 +1,6 @@
 {
   "name": "@neutrium/thermo.eos.iapws97",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "main": "dist/index.js",
   "typings": "dist/index",
   "description": "A javascript implementation of the IAWPS formulations for the thermodynamic properties of water and steam.",
@@ -27,8 +27,7 @@
     "jasmine": "^2.4.1"
   },
   "dependencies": {
-    "@neutrium/thermo": "^2.0.0",
-    "@neutrium/quantity": "^2.0.0"
+    "@neutrium/thermo": "^2.0.1"
   },
   "scripts": {
       "clean": "rm -r ./dist/*",
