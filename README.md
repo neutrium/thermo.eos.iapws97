@@ -1,8 +1,8 @@
-# Neutrium.thermo.IAPWS97
+# @neutrium/thermo.eos.iapws97
 
 ## Introduction
 
-Neutrium.thermo.IAPWS97 is a javascript implementation of the [IAPWS](http://www.iapws.org/) formulations of the thermodynamic properties of water and steam. The IAPWS papers implemented in Neutrium.thermo.IAPWS97 are as follows:
+@neutrium/thermo.eos.iapws97 is a javascript implementation of the [IAPWS](http://www.iapws.org/) formulations of the thermodynamic properties of water and steam. The IAPWS papers implemented in Neutrium.thermo.IAPWS97 are as follows:
 
 - [Revised Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam 2007](http://www.iapws.org/relguide/IF97-Rev.html)
 - [Revised Supplementary Release on Backward Equations for Pressure as a Function of Enthalpy and Entropy p(h,s) for Regions 1 and 2 of the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam](http://www.iapws.org/relguide/Supp-PHS12-2014.pdf)
@@ -30,7 +30,7 @@ You can install the Neutrium implementation of the IAPWS97 equation of state pac
 
 In typescript you can include the package as follows:
 
-    import {IAPWS97_EoS} from "@neutrium/thermo.eos.iapws97"
+    import { IAPWS97_EoS } from "@neutrium/thermo.eos.iapws97"
 
     let EoS = new IAPWS97_EOS();
 
@@ -56,7 +56,7 @@ This package makes use of utf8 characters for variable names and therefore shoul
 
 Steam and water properties can be calculated using the solve method and a supported combination of pressure (Pa), temperature (K), enthalpy (kJ/kg.K) and entropy (kJ/K.kg). For example (in typescript):
 
-    import {IAPWS97_EOS} from "@neutrium/thermo.eos.iapws97"
+    import { IAPWS97_EOS } from "@neutrium/thermo.eos.iapws97"
 
     let EoS = new IAPWS97_EOS();
     let inputs = {
@@ -110,15 +110,12 @@ This will allow you to easily convert each property as required:
 
 	var psi = result.p.to('psi');
 
-See the NeutriumJS.Quantity [readme](https://github.com/neutrium/quantity/blob/master/README.md) for more info.
+See the @neutrium/quantity [readme](https://github.com/neutrium/quantity/blob/master/README.md) for more info.
 
 ## Testing
 
-This pacakge is currently tested using all applicable tests provided in the IAWPS papers listed above. To run the tests, after cloning and installing package dependences via npm and run `npm task build` at the terminal.
+This package is currently tested using all applicable tests provided in the IAWPS papers listed above. To run the tests, after cloning and installing package dependencies via npm run the tests via `npm run build` at the terminal.
 
-## Donations
-
-NeutriumJS is free software, but you can support the developers by [donating here](https://neutrium.net/donate/).
 
 ## Release Notes
 
@@ -132,7 +129,17 @@ NeutriumJS is free software, but you can support the developers by [donating her
 | 1.1.3   | Bug fixes for exception throwing logic |
 | 1.2.0	  | Renamed package to NeutriumJS.thermo.IAPWS97 |
 | 2.0.0   | Rename package, switch to Typescript and convert to npm module |
+| 2.1.0   | Updated @thermo/thermo package fix mode finding bug and improved typing |
 
 ## License
 
-[Creative Commons Attribution 4.0 International](http://creativecommons.org/licenses/by/4.0/legalcode)
+This work is licensed under the [Creative Commons Attribution 4.0 International](http://creativecommons.org/licenses/by/4.0/legalcode) License.
+
+You are free to:
+
+- Share — copy and redistribute the material in any medium or format.
+- Adapt — remix, transform, and build upon the material for any purpose, including commercially.
+
+Under the following terms:
+
+- Attribution — you must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the original author endorses you or your use.

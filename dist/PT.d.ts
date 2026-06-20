@@ -3,7 +3,7 @@ export declare function solve(P: number, T: number, v?: number): State;
 export declare function b23_T_P(T: number): number;
 export declare function b23_P_T(P: number): number;
 export declare function r1(P: number, T: number): State;
-export declare function r2(P: any, T: any): State;
+export declare function r2(P: any, T: any): State<number>;
 export declare function r3(P: number, T: number, rho?: number): State;
 export declare function b3ab_P_T(P: number): number;
 export declare function b3op_P_T(P: number): number;

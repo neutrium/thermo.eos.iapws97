@@ -1,6 +1,6 @@
 var ph = require('../dist/PH');
 
-describe("NeutriumJS.thermo.IAWPS97 Pressure-Enthalpy equations", function() {
+describe("@neutrium/thermo.iapws97 Pressure-Enthalpy equations", function() {
 	describe("PH Region 1", function() {
 
 		describe("correct results for P = 3 MPa, h = 500 kJ/kg", function() {

@@ -1,6 +1,6 @@
 var hs = require('../dist/HS');
 
-describe("NeutriumJS.thermo.IAPWS97.HS Enthalphy-Entropy equations", function() {
+describe("@neutrium/thermo.iapws97.HS Enthalpy-Entropy equations", function() {
 
 	describe("Boundary/auxiliary equations", function() {
 		describe("equation h\"2c3b(s)", function() {

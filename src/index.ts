@@ -9,4 +9,4 @@
 //	http://creativecommons.org/licenses/by/4.0/legalcode
 //
 
-export {IAPWS97_EoS} from './IAPWS97'
+export { IAPWS97_EoS } from './IAPWS97'

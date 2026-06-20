@@ -1,28 +1,36 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.constants = void 0;
+exports.CONST = CONST;
+exports.viscosity = viscosity;
+exports.thermal_conductivity = thermal_conductivity;
+exports.surface_tension = surface_tension;
+exports.dielectric_constant = dielectric_constant;
+exports.ionization_constant = ionization_constant;
 exports.constants = {
     // Critical and Gas Constants
-    'R': 0.461526,
+    'R': 0.461526, // kJ/kg.K
     //'Tc' : 647.096,					// K
-    'Pc': 22.064,
+    'Pc': 22.064, // Mpa
     //'Rhoc' : 322,					// kg/m3
     // Temperature and Pressure region limits
-    'MIN_P': 0.000611213,
-    'MAX_P': 100.0,
-    'MAX_T': 2273.15,
-    'MIN_T': 273.15,
-    'MIN_S': -0.000154549592045,
-    'MIN_H': -0.041587825659104,
-    'R2_MIN_T': 623.15,
-    'R2_MAX_T': 1073.15,
-    'R2_CRT_S': 5.85,
-    'R2_CRT_P': 4.0,
-    'B23_MIN_P': 16.5292,
-    'B23_MAX_T': 863.15,
-    'R5_MIN_T': 1073.15,
-    'R5_MAX_P': 50,
-    'R5_MAX_T': 2273.15,
-    'R3_MIN_T': 623.15,
-    'R3_CRT_S': 4.41202148223476,
+    'MIN_P': 0.000611213, // MPa
+    'MAX_P': 100.0, // MPa
+    'MAX_T': 2273.15, // K
+    'MIN_T': 273.15, // K
+    'MIN_S': -0.000154549592045, // kJ/kg
+    'MIN_H': -0.041587825659104, // kJ/kg.K
+    'R2_MIN_T': 623.15, // K
+    'R2_MAX_T': 1073.15, // K
+    'R2_CRT_S': 5.85, // kJ/kg.K
+    'R2_CRT_P': 4.0, // MPa
+    'B23_MIN_P': 16.5292, // MPa (The region 2-3 boundary pressure at R2_MIN_T)
+    'B23_MAX_T': 863.15, // K   (The region 2-3 boundary temperature at MAX_P)
+    'R5_MIN_T': 1073.15, // K
+    'R5_MAX_P': 50, // Mpa
+    'R5_MAX_T': 2273.15, // K
+    'R3_MIN_T': 623.15, // K
+    'R3_CRT_S': 4.41202148223476, // kJ/kg.K
     'B23_S_MIN': 5.048096828,
     'B23_S_MAX': 5.260578707,
     'B23_H_MIN': 2563.592004,
@@ -32,9 +40,8 @@ exports.constants = {
 function CONST(key) {
     return exports.constants[key];
 }
-exports.CONST = CONST;
 //
-// Auxiliary Equation for additonal properties
+// Auxiliary Equation for additional properties
 //
 //
 //	Comments : IAPWS Viscosity of ordinary water substances 2008
@@ -45,23 +52,23 @@ exports.CONST = CONST;
 //	@return Viscosity in Pa.s (P)
 //
 function viscosity(T, ρ) {
-    var T_hat = T / 647.096, ρ_hat = ρ / 322, μ0_H = [1.67752, 2.20462, 0.6366564, -0.241605], μ0 = 100 * Math.sqrt(T_hat), x = 0, y = 0;
-    for (var i = 0; i < 4; i++) {
+    let T_hat = T / 647.096, ρ_hat = ρ / 322, μ0_H = [1.67752, 2.20462, 0.6366564, -0.241605], μ0 = 100 * Math.sqrt(T_hat), x = 0, y = 0;
+    for (let i = 0; i < 4; i++) {
         x += μ0_H[i] / Math.pow(T_hat, i);
     }
     μ0 = μ0 / x;
-    var μ1 = 0, μ1_H = [5.20094E-1, 8.50895E-2, -1.08374, -2.89555E-1, 0, 0, 2.22531E-1, 9.99115E-1, 1.88797, 1.26613, 0, 1.20573E-1, -2.81378E-1, -9.06851E-1, -7.72479E-1, -4.89837E-1, -2.5704E-1, 0, 1.61913E-1, 2.57399E-1, 0, 0, 0, 0, -3.25372E-2, 0, 0, 6.98452E-2, 0, 0, 0, 0, 0, 0, 8.72102E-3, 0, 0, 0, 0, -4.35673E-3, 0, -5.93264E-4];
-    for (var j = 0; j < 6; j++) {
+    let μ1 = 0, μ1_H = [5.20094E-1, 8.50895E-2, -1.08374, -2.89555E-1, 0, 0, 2.22531E-1, 9.99115E-1, 1.88797, 1.26613, 0, 1.20573E-1, -2.81378E-1, -9.06851E-1, -7.72479E-1, -4.89837E-1, -2.5704E-1, 0, 1.61913E-1, 2.57399E-1, 0, 0, 0, 0, -3.25372E-2, 0, 0, 6.98452E-2, 0, 0, 0, 0, 0, 0, 8.72102E-3, 0, 0, 0, 0, -4.35673E-3, 0, -5.93264E-4];
+    for (let j = 0; j < 6; j++) {
         x = Math.pow(1 / T_hat - 1, j);
         y = 0;
-        for (var z = 0; z < 7; z++) {
+        for (let z = 0; z < 7; z++) {
             y += μ1_H[z * 6 + j] * Math.pow(ρ_hat - 1, z);
         }
         μ1 += x * y;
     }
     μ1 = Math.exp(ρ_hat * μ1);
     // No correction at the subcritical region yet
-    var μ2 = 1;
+    let μ2 = 1;
     /*
     // start of critcial enhancement
     let chi = rho_hat*(zetaX(T_hat, rho_hat) - zetaR(rho_hat)*1.5/T_hat),
@@ -83,7 +90,6 @@ function viscosity(T, ρ) {
     */
     return μ0 * μ1 * μ2;
 }
-exports.viscosity = viscosity;
 //
 //	Comments : IAPWS Thermal conductivity of ordinary water substances 2011
 //
@@ -93,23 +99,23 @@ exports.viscosity = viscosity;
 //	@return The thermal conductivity in mW/m.K
 //
 function thermal_conductivity(T, ρ) {
-    var T_hat = T / 647.096, ρ_hat = ρ / 322, k0_L = [2.443221E-3, 1.323095E-2, 6.770357E-3, -3.454586E-3, 4.096266E-4], k0 = 0;
-    for (var i = 0; i < 5; i++) {
+    let T_hat = T / 647.096, ρ_hat = ρ / 322, k0_L = [2.443221E-3, 1.323095E-2, 6.770357E-3, -3.454586E-3, 4.096266E-4], k0 = 0;
+    for (let i = 0; i < 5; i++) {
         k0 += k0_L[i] / Math.pow(T_hat, i);
     }
     k0 = Math.sqrt(T_hat) / k0;
-    var k1 = 0, k1_L = [1.60397357, -0.646013523, 0.111443906, 0.102997357, -0.0504123634, 0.00609859258, 2.33771842, -2.78843778, 1.53616167, -0.463045512, 0.0832827019, -0.00719201245, 2.19650529, -4.54580785, 3.55777244, -1.40944978, 0.275418278, -0.0205938816, -1.21051378, 1.60812989, -0.621178141, 0.0716373224, 0, 0, -2.720337, 4.57586331, -3.18369245, 1.1168348, -0.19268305, 0.012913842], x = 0, y = 0;
-    for (var j = 0; j < 5; j++) {
+    let k1 = 0, k1_L = [1.60397357, -0.646013523, 0.111443906, 0.102997357, -0.0504123634, 0.00609859258, 2.33771842, -2.78843778, 1.53616167, -0.463045512, 0.0832827019, -0.00719201245, 2.19650529, -4.54580785, 3.55777244, -1.40944978, 0.275418278, -0.0205938816, -1.21051378, 1.60812989, -0.621178141, 0.0716373224, 0, 0, -2.720337, 4.57586331, -3.18369245, 1.1168348, -0.19268305, 0.012913842], x = 0, y = 0;
+    for (let j = 0; j < 5; j++) {
         x = Math.pow(1 / T_hat - 1, j);
         y = 0;
-        for (var z = 0; z < 6; z++) {
+        for (let z = 0; z < 6; z++) {
             y += k1_L[j * 6 + z] * Math.pow(ρ_hat - 1, z);
         }
         k1 += x * y;
     }
     k1 = Math.exp(ρ_hat * k1);
     // The critical enhancement not implemented yet
-    var k2 = 0;
+    let k2 = 0;
     /*
     To be included once zeta(T_hat, rho_hat) function found
 
@@ -159,7 +165,6 @@ function thermal_conductivity(T, ρ) {
     */
     return k0 * k1 + k2;
 }
-exports.thermal_conductivity = thermal_conductivity;
 //
 //	Comments : IAPWS Surface Tension of ordinary water substances 2014
 //
@@ -168,10 +173,9 @@ exports.thermal_conductivity = thermal_conductivity;
 //	@return The surface tension in mN/m
 //
 function surface_tension(T) {
-    var τ = 1 - T / 647.096, σ = 235.8 * Math.pow(τ, 1.256) * (1 - 0.625 * τ);
+    let τ = 1 - T / 647.096, σ = 235.8 * Math.pow(τ, 1.256) * (1 - 0.625 * τ);
     return σ;
 }
-exports.surface_tension = surface_tension;
 //
 //	Comments : IAPWS Static Dielectric Constant of ordinary water substances 1997
 //
@@ -181,7 +185,7 @@ exports.surface_tension = surface_tension;
 //	@return The surface tension in mN/m
 //
 function dielectric_constant(T, ρ) {
-    var MW = 0.018015268, ρm = ρ / MW, //  Molecular density (mol . m^-3)
+    let MW = 0.018015268, ρm = ρ / MW, //  Molecular density (mol . m^-3)
     ρρc = ρm / (322 / MW), α = 1.636E-40, // Mean molecular polarizability (C^2 . J^-1 . m^2)
     N_a = 6.0221367E23, // Avogadro's number (mol^-1)
     μ = 6.138E-30, // Molecular dipole moment (C . m)
@@ -190,14 +194,13 @@ function dielectric_constant(T, ρ) {
     Nh = [0.978224486826, -0.957771379375, 0.237511794148, 0.714692244396, -0.298217036956, -0.108863472196, 0.0949327488264, -0.00980469816509, 0.16516763497E-4, 0.937359795772E-4, -0.12317921872E-9], 
     //Nh = [0.978224486826,-0.957771379375,0.237511794148,0.714692244396,-0.298217036956,-0.108863472196,0.0949327488264,-0.00980469816509,0.000016516763497,0.0000937359795772,-1.23179218720E-10],
     Ih = [1, 1, 1, 2, 3, 3, 4, 5, 6, 7, 10], Jh = [0.25, 1, 2.5, 1.5, 1.5, 2.5, 2, 2, 5, 0.5, 10], g = 0;
-    for (var i = 0; i < 11; i++) {
+    for (let i = 0; i < 11; i++) {
         g += Nh[i] * Math.pow(ρρc, Ih[i]) * Math.pow(647.096 / T, Jh[i]);
     }
     g = 1 + g + 0.00196096504426 * (ρρc) * Math.pow(T / 228 - 1, -1.2);
-    var A = N_a * μ * μ * ρm * g / (ε_0 * k * T), B = N_a * α * ρm / (3 * ε_0), ε = (1 + A + 5 * B + Math.sqrt(9 + 2 * A + 18 * B + A * A + 10 * A * B + 9 * B * B)) / (4 - 4 * B);
+    let A = N_a * μ * μ * ρm * g / (ε_0 * k * T), B = N_a * α * ρm / (3 * ε_0), ε = (1 + A + 5 * B + Math.sqrt(9 + 2 * A + 18 * B + A * A + 10 * A * B + 9 * B * B)) / (4 - 4 * B);
     return ε;
 }
-exports.dielectric_constant = dielectric_constant;
 //
 //	Comments : IAPWS Ionization Constant of H2O 2007
 //
@@ -207,11 +210,11 @@ exports.dielectric_constant = dielectric_constant;
 //	@return The ionization constant in (dimensionless)
 //
 function ionization_constant(T, ρ) {
-    var pK_wg = 0.61415 + 48251.33 / T - 67707.93 / (T * T) + 10102100 / (T * T * T), Q = ρ * Math.exp(-0.864671 + 8659.19 / T - 22786.2 * Math.pow(ρ, 2 / 3) / (T * T)), pK_w = -12 * (log10(1 + Q) - Q / (Q + 1) * ρ * (0.642044 - 56.8534 / T - 0.375754 * ρ)) + pK_wg + 2 * log10(0.018015268);
+    let pK_wg = 0.61415 + 48251.33 / T - 67707.93 / (T * T) + 10102100 / (T * T * T), Q = ρ * Math.exp(-0.864671 + 8659.19 / T - 22786.2 * Math.pow(ρ, 2 / 3) / (T * T)), pK_w = -12 * (log10(1 + Q) - Q / (Q + 1) * ρ * (0.642044 - 56.8534 / T - 0.375754 * ρ)) + pK_wg + 2 * log10(0.018015268);
     return pK_w;
 }
-exports.ionization_constant = ionization_constant;
 // Not all browsers support log10 (IE)
 function log10(x) {
     return Math.log(x) / Math.LN10;
 }
+//# sourceMappingURL=base.js.map

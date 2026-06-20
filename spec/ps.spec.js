@@ -1,6 +1,6 @@
 var ps = require('../dist/PS');
 
-describe("NeutriumJS.thermo.IAWPS97 Pressure-Entropy equations", function() {
+describe("@neutrium/thermo.iapws97 Pressure-Entropy equations", function() {
 
 	describe("PS Region 1", function() {
 

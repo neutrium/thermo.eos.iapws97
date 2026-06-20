@@ -1,6 +1,6 @@
 var base = require('../dist/base')
 
-describe("NeutriumJS.thermo.IAWPS97 additional properties", function() {
+describe("@neutrium/thermo.iapws97 additional properties", function() {
 	describe("Viscosity", function() {
 
 		it('correct for T = 298.15 K and rho = 998 kg/m^3', function() {

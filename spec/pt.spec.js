@@ -1,6 +1,6 @@
 var pt = require('../dist/PT');
 
-describe("NeutriumJS.thermo.IAWPS97 Pressure-Temperature equations", function() {
+describe("@neutrium/thermo.iapws97 Pressure-Temperature equations", function() {
 
 	describe("PT Auxiliary Equations", function() {
 
